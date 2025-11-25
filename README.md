@@ -80,12 +80,22 @@ src/
 
 | Concern | Location | Notes |
 | --- | --- | --- |
-| EmailJS service/template/public key | `src/components/BookingForm.tsx` | Replace placeholder IDs with your own keys or load them from environment variables (recommended before production). |
+| EmailJS service/template/public key | `src/components/BookingForm.tsx` | Loaded from `.env` via `VITE_SERVICEID`, `VITE_TEMPLATEID`, `VITE_PUBLICID`. Update values there and in your hosting env settings. |
 | Contact email / WhatsApp link | `BookingForm` copy | Update to reflect your business channels. |
 | YouTube video IDs | `src/components/Videos.tsx` | Swap out placeholder IDs with real showcase content. |
 | Gallery images | `src/assets/garden-*.jpg` | Replace with optimised images of completed projects. |
 
-To keep secrets out of the client bundle, move EmailJS credentials into a `.env` file and reference them via `import.meta.env.VITE_*` variables.
+### Environment Variables
+
+Create a `.env` (or `.env.local`) file at the project root:
+
+```dotenv
+VITE_SERVICEID=your_emailjs_service_id
+VITE_TEMPLATEID=your_emailjs_template_id
+VITE_PUBLICID=your_emailjs_public_key
+```
+
+Restart `npm run dev` after adding or changing env vars. For production (e.g., Vercel), define the same variables in the project’s Environment Variables settings.
 
 ## Deployment
 
