@@ -8,7 +8,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Calendar, Mail, Phone, User } from "lucide-react";
 import { z } from "zod";
-import { log } from "console";
 
 const formSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -41,11 +40,10 @@ const BookingForm = () => {
       
       setIsLoading(true);
 
-      // EmailJS configuration
-      // You need to replace these with your actual EmailJS credentials
-      const serviceId = "service_2dn8p9x";
-      const templateId = "template_bieez7y";
-      const publicKey = "uBQeJYHImcwuAXM5e";
+      //EmailJs Configuration
+      const serviceId = import.meta.env.VITE_SERVICEID;
+      const templateId = import.meta.env.VITE_TEMPLATEID;
+      const publicKey = import.meta.env.VITE_PUBLICID;
 
       const templateParams = {
         name: formData.name,
